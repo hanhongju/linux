@@ -1,8 +1,9 @@
 apt update
-apt install -y pandoc curl
-mkdir -p ~/fhs_epub
-cd ~/fhs_epub
-curl -sL "https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html" -o fhs_3.0.html
+apt install -y    pandoc curl
+mkdir       -p    ~/fhs_epub
+cd                ~/fhs_epub
+curl        -sL   "https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html"   -o   fhs_3.0.html
+
 
 python3 -c '
 from html.parser import HTMLParser
@@ -20,29 +21,18 @@ with open("fhs_clean.html", "w", encoding="utf-8") as f:
     f.write(html)
 '
 
+
 echo '
 a, a:link, a:visited {
-    text-decoration: none !important;  /* 把链接的下划线去掉 */
-    color: #0066cc !important;             /* 设置成蓝色字体 */
+    text-decoration: none !important;        /* 把链接的下划线去掉 */
+    color: #0066cc !important;               /* 设置成蓝色字体 */
 }
-ul   {list-style-type: none !important;}      /* 去除目录列表默认的圆点符号 */
+ul   {list-style-type: none !important;}     /* 去除目录列表默认的圆点符号 */
 ' > custom.css
 
-echo '
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://w3.org">
-<head>
-  <title>$pagetitle$</title>
-  <link rel="stylesheet" type="text/css" href="$css$" />
-</head>
-<body>
-$body$
-</body>
-</html>
-' > clean.epub.html
 
-pandoc fhs_clean.html -o fhs_3.0.epub --css=custom.css --template=clean.epub.html --metadata title="Filesystem Hierarchy Standard 3.0" --split-level=1 --epub-title-page=false
+pandoc fhs_clean.html -o fhs_3.0.epub --css=custom.css  --metadata title="Filesystem Hierarchy Standard 3.0" --split-level=1 --epub-title-page=false
+
 
 
 
