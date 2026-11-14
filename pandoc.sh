@@ -1,8 +1,8 @@
-apt update
-apt install -y    pandoc curl
-mkdir       -p    ~/fhs_epub
-cd                ~/fhs_epub
-curl        -sL   "https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html"   -o   fhs_3.0.html
+apt  update
+apt  install -y    pandoc curl
+mkdir        -p    ~/fhs_epub
+cd                 ~/fhs_epub
+curl         -sL   "https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html"   -o   fhs_3.0.html
 
 
 python3 -c '
